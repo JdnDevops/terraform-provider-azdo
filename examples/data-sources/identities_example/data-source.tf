@@ -1,0 +1,1 @@
+data "azdo_identities" "example" {}

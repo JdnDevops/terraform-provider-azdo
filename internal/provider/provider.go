@@ -45,13 +45,13 @@ func (p *AzdoProvider) Schema(ctx context.Context, req provider.SchemaRequest, r
 	resp.Schema = schema.Schema{
 		Attributes: map[string]schema.Attribute{
 			"org_service_url": schema.StringAttribute{
-				MarkdownDescription: "The url of the Azure DevOps instance which should be used.",
-				Optional:            true,
+				Description: "The url of the Azure DevOps instance which should be used.",
+				Optional:    true,
 			},
 			"personal_access_token": schema.StringAttribute{
-				MarkdownDescription: "The personal access token which should be used",
-				Optional:            true,
-				Sensitive:           true,
+				Description: "The personal access token which should be used",
+				Optional:    true,
+				Sensitive:   true,
 			},
 		},
 	}
