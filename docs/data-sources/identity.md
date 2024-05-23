@@ -8,7 +8,11 @@ description: |-
 
 # azdo_identity (Data Source)
 
-Azdo Identity
+```
+data "azdo_identity" "example" {
+  display_name = "[DefaultCollection]\\Production"
+}
+```
 
 
 
