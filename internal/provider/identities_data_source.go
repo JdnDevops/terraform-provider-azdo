@@ -105,7 +105,8 @@ func (d *IdentitiesDataSource) Read(ctx context.Context, req datasource.ReadRequ
 	if resp.Diagnostics.HasError() {
 		return
 	}
-	var response, error = d.client.ListGroups(ctx, identity.ListGroupsArgs{})
+	recurse := true
+	var response, error = d.client.ListGroups(ctx, identity.ListGroupsArgs{Recurse: &recurse})
 	if error != nil {
 		resp.Diagnostics.AddError("Error", error.Error())
 		return
