@@ -11,7 +11,7 @@ steps:
     - script: |
         git clone https://tfs.app.jandenul.com/tfs/DefaultCollection/Kubernetes/_git/terraform-provider-jdn-azdo-src MyRepo
         cd MyRepo
-        git remove remove github
+        git remote remove github
         git remote add github https://${GH_PAT}@github.com/JdnDevops/terraform-provider-azdo.git
         git pull origin main --rebase
         git reset --hard origin/main
