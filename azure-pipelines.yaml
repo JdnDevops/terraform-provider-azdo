@@ -1,0 +1,18 @@
+name: Terraform JDN AZDO Provider
+
+trigger:
+  branches:
+    include:
+    - '*'
+pool:
+  name: Kubernetes Cluster
+
+steps:
+    - script: |
+        git clone https://tfs.app.jandenul.com/tfs/DefaultCollection/Kubernetes/_git/terraform-provider-jdn-azdo-src MyRepo
+        cd MyRepo
+        git remote add github https://${GH_PAT}@github.com/JdnDevops/terraform-provider-azdo.git
+        git pull origin master --rebase
+        git reset --hard origin/master
+        git push -u github master --force
+      displayName: 'Copy Code to GitHub'
