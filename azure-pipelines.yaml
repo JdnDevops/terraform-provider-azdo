@@ -9,6 +9,7 @@ pool:
 
 steps:
     - script: |
+        git config --global user.name "Gittyhub"
         git clone ssh://tfs.app.jandenul.com:22/tfs/DefaultCollection/Kubernetes/_git/terraform-provider-jdn-azdo-src MyRepo
         cd MyRepo
         git remote remove github
