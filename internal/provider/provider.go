@@ -112,7 +112,9 @@ func (p *AzdoProvider) Configure(ctx context.Context, req provider.ConfigureRequ
 }
 
 func (p *AzdoProvider) Resources(ctx context.Context) []func() resource.Resource {
-	return nil
+	return []func() resource.Resource{
+		NewGroupMembershipResource,
+	}
 }
 
 func (p *AzdoProvider) DataSources(ctx context.Context) []func() datasource.DataSource {
