@@ -3,14 +3,12 @@
 page_title: "azdo_identities Data Source - azdo"
 subcategory: ""
 description: |-
-  Azdo Identities
+  Azdo Identity
 ---
 
 # azdo_identities (Data Source)
 
-```
-data "azdo_identities" "example" {}
-```
+Azdo Identity
 
 
 
