@@ -220,7 +220,7 @@ func (r *GroupMembershipResource) Update(ctx context.Context, req resource.Updat
 			resp.Diagnostics.AddError("Error", err.Error())
 			return
 		}
-		tflog.Info(ctx, fmt.Sprintf("added member %s to group: %s", *foundIdentity.CustomDisplayName, *foundIdentity.CustomDisplayName))
+		// tflog.Info(ctx, fmt.Sprintf("added member %s to group: %s", *foundIdentity.CustomDisplayName, *foundGroup.CustomDisplayName))
 	}
 
 	for _, foundIdentity := range toRemoveMembers {
@@ -229,7 +229,7 @@ func (r *GroupMembershipResource) Update(ctx context.Context, req resource.Updat
 			resp.Diagnostics.AddError("Error", err.Error())
 			return
 		}
-		tflog.Info(ctx, fmt.Sprintf("removed member %s from group: %s", *foundIdentity.CustomDisplayName, *foundIdentity.CustomDisplayName))
+		// tflog.Info(ctx, fmt.Sprintf("removed member %s from group: %s", *foundIdentity.CustomDisplayName, *foundGroup.CustomDisplayName))
 	}
 
 	// Save updated data into Terraform state
