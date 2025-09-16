@@ -37,6 +37,7 @@ type IdentityModel struct {
 	DisplayName       types.String `tfsdk:"display_name"`
 	SubjectDescriptor types.String `tfsdk:"subject_descriptor"`
 	Descriptor        types.String `tfsdk:"descriptor"`
+	ProjectId         types.String `tfsdk:"project_id"`
 }
 
 func (d *IdentitiesDataSource) Metadata(ctx context.Context, req datasource.MetadataRequest, resp *datasource.MetadataResponse) {
@@ -60,9 +61,9 @@ func (d *IdentitiesDataSource) Schema(ctx context.Context, req datasource.Schema
 							Computed:    true,
 							Description: "The display name of the identity",
 						},
-						"project_id": schema.StringAttribute {
+						"project_id": schema.StringAttribute{
 							Description: "The project ID (this is a bandaid fix to allow Terraform to use data sources on non-created projects)",
-							Optional: true,
+							Optional:    true,
 						},
 						"subject_descriptor": schema.StringAttribute{
 							Computed:    true,
@@ -134,6 +135,10 @@ func (d *IdentitiesDataSource) Read(ctx context.Context, req datasource.ReadRequ
 		if identity.Descriptor != nil {
 			identityModel.Descriptor = types.StringValue(*identity.Descriptor)
 		}
+		if data.Identities[0].ProjectId.ValueString() != "" {
+			identityModel.ProjectId = types.StringValue(data.Identities[0].ProjectId.ValueString())
+		}
+
 		data.Identities = append(data.Identities, identityModel)
 	}
 

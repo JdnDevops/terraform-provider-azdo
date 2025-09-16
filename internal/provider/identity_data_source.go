@@ -44,9 +44,9 @@ func (d *IdentityDataSource) Schema(ctx context.Context, req datasource.SchemaRe
 				Description: "The display name of the identity",
 				Required:    true,
 			},
-			"project_id": schema.StringAttribute {
+			"project_id": schema.StringAttribute{
 				Description: "The project ID (this is a bandaid fix to allow Terraform to use data sources on non-created projects)",
-				Optional: true,
+				Optional:    true,
 			},
 			"subject_descriptor": schema.StringAttribute{
 				Computed:    true,
