@@ -140,3 +140,14 @@ func (s *IdentityService) RemoveMemberFromGroup(ctx context.Context, group *iden
 	}
 	return nil
 }
+
+func (s *IdentityService) CreateGroup(ctx context.Context, name string, description string, members *[]identity.Identity) (*[]identity.Identity, error) {
+
+	var group identity.Identity
+	group.ProviderDisplayName = &name
+	group.Description = &description
+
+	var response, err = s.client.CreateGroups(ctx, identity.CreateGroupsArgs{)
+
+	return response, nil
+}

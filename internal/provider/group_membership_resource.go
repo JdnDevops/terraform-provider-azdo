@@ -192,7 +192,11 @@ func (r *GroupMembershipResource) Update(ctx context.Context, req resource.Updat
 	var toAddMembers []identity.Identity
 	for _, stateMember := range data.Members {
 		containsMember := slices.ContainsFunc(*members, func(m identity.Identity) bool {
-			return *m.CustomDisplayName == stateMember.ValueString()
+			displayName := *m.ProviderDisplayName
+			if m.CustomDisplayName != nil {
+				displayName = *m.CustomDisplayName
+			}
+			return displayName == stateMember.ValueString()
 		})
 
 		if !containsMember {
@@ -207,8 +211,12 @@ func (r *GroupMembershipResource) Update(ctx context.Context, req resource.Updat
 
 	var toRemoveMembers []identity.Identity
 	for _, member := range *members {
+		displayName := *member.ProviderDisplayName
+		if member.CustomDisplayName != nil {
+			displayName = *member.CustomDisplayName
+		}
 
-		containsMember := slices.Contains(data.Members, types.StringValue(*member.CustomDisplayName))
+		containsMember := slices.Contains(data.Members, types.StringValue(displayName))
 		if !containsMember {
 			toRemoveMembers = append(toRemoveMembers, member)
 		}
