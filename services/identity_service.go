@@ -95,6 +95,9 @@ func (s *IdentityService) GetGroupMembers(ctx context.Context, name string) (*[]
 	}
 
 	memberDescriptorsCombined := strings.Join(*response, ",")
+	if memberDescriptorsCombined == "" {
+		return &[]identity.Identity{}, nil
+	}
 	members, err := s.GetIdentitiesByDescriptor(ctx, &memberDescriptorsCombined)
 	if err != nil {
 		return &[]identity.Identity{}, err
